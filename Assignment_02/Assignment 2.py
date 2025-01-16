@@ -97,6 +97,7 @@ def total_revenue(units_sold: int, price: float):
     
     return total
 
+# Testing examples
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 3.")
 
@@ -125,6 +126,7 @@ def total_cost(quantity_produced, fixed_cost: float, k):
     
     return cal
 
+# Testing examples
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 4.")
 
@@ -154,6 +156,7 @@ def CESutility(x, y, r):
     cal = (x**r + y**r)**(1 / r)
     return cal
 
+# Testing examples
 print("#" + 50*"-")
 print("Testing my Examples for Exercise 5.")
 
