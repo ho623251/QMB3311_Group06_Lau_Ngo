@@ -29,7 +29,8 @@
 
 # Exercise 1
 def present_value(cash_flow: float, interest_rate: float, num_yrs: float) -> float:
-    
+# missing docstring and test cases(-5) 
+# needs either a precondition or checks to make sure that variables are not negative (-1)   
     
     answer_present = cash_flow / (1+ interest_rate) ** num_yrs 
 
@@ -62,7 +63,9 @@ print("Got: " + str(present_value(10000, 0.10, 3)))
 
 # Exercise 2
 def future_value(cash_flow: float, interest_rate: float, num_yrs: float) -> float:
-    
+# missing docstring and test cases(-5)    
+
+# needs either a precondition or checks to make sure that variables are not negative (-1)
     answer_future = cash_flow * (1+ interest_rate) ** num_yrs 
 
     return answer_future
@@ -94,7 +97,9 @@ print("Got: " + str(future_value(10000, 0.1, 3)))
 #Exercise 3
 def total_revenue(units_sold: int, price: float):
     total = units_sold * price 
-    
+# missing docstring and test cases(-5)    
+
+# needs either a precondition or checks to make sure that variables are not negative (-1)
     return total
 
 # Testing examples
@@ -121,7 +126,9 @@ print("Got: " + str(total_revenue(10,11)))
 
 # Exercise 4 
 def total_cost(quantity_produced, fixed_cost: float, k):
-    
+# missing docstring and test cases(-5)    
+
+# needs either a precondition or checks to make sure that variables are not negative (-1)
     cal = k * (quantity_produced ** 2) + fixed_cost
     
     return cal
@@ -151,8 +158,8 @@ print("Got: " + str(total_cost(4,5,10)))
 # Exercise 5
 
 def CESutility(x, y, r):
-    
-    # Compute the CES utility function for r ≠ 0
+# missing docstring and test cases(-5)    
+    # Compute the CES utility function for r ≠ 0 <- this would be in the precondition
     cal = (x**r + y**r)**(1 / r)
     return cal
 
