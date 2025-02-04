@@ -1,5 +1,11 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Created on Mon Feb  3 23:27:52 2025
+
+@author: mintuw
+"""
+
 ##################################################
 #
 # QMB 3311: Python for Business Analytics
