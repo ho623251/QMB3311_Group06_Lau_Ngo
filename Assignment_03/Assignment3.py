@@ -28,28 +28,43 @@ import math
 # Part (a): CES Utility Function
 ##################################################
 
-def CESutility_valid(x, y, r):
+def CESutility(good_x: float, good_y: float, r: float) -> float:
+    """Calculate the constant elasticity of subsitution utility function for two goods.
+    
+    >>> CESutility(3, 4, 2)
+    5.0
+    >>> CESutility(1, 1, 2)
+    1.4142135623730951
+    >>> CESutility(3**0.5, 4**0.5, 4)
+    2.23606797749979
+    """
+    
+    utility = (good_x**r + good_y**r)**(1/r)
+    return utility
+
+def CESutility_valid(x, y, r): # missing expected input/output (-2)
+# missing docstring (-4)
     if x < 0 or y < 0:
-        print("Error: x and y must be positive numbers.")
+        print("Error: x and y must be positive numbers.") # should break this apart to help person know which is the affected value
         return None
     if r <= 0:
         print("Error: r must be strictly positive.")
         return None
-    return (x**r + y**r)**(1 / r)
+    return CESutility(x,y,r)
 
 ##################################################
 # Part (b): CES Utility with Budget Constraint
 ##################################################
 
-def CESutility_in_budget(x, y, r, px, py, w):
+def CESutility_in_budget(x, y, r, px, py, w):# missing expected input/output (-2)
+# missing docstring (-4)
     if px < 0 or py < 0:
         print("Error: Prices cannot be negative.")
         return None
     if w < 0:
         print("Error: Wealth (w) cannot be negative.")
         return None
-    if r <= 0:
-        print("Error: r must be strictly positive.")
+# handled by the CESutility_valid function
         return None
     if px * x + py * y > w:
         print("Error: The chosen basket exceeds the budget.")
@@ -60,7 +75,8 @@ def CESutility_in_budget(x, y, r, px, py, w):
 # Part (c): Logit Function
 ##################################################
 
-def logit(x, beta0, beta1):
+def logit(x, beta0, beta1):# missing expected input/output (-2)
+# missing docstring (-4)
     exponent = beta0 + beta1 * x
     return math.exp(exponent) / (1 + math.exp(exponent))
 
@@ -68,7 +84,8 @@ def logit(x, beta0, beta1):
 # Part (d): Log-Likelihood of Logit Model
 ##################################################
 
-def logit_like(y, x, beta0, beta1):
+def logit_like(y, x, beta0, beta1):# missing expected input/output (-2)
+# missing docstring (-4)
     prob = logit(x, beta0, beta1)
     if y == 1:
         return math.log(prob)
