@@ -330,8 +330,6 @@ def CESutility_multi(x, a, r):
 # Test the examples in your docstrings
 ##################################################
 
-# Question 2: Test using the doctest module. 
-
 # Exercise 1(a): Test log-likelihood sum for different datasets.
 
 # Example 1: Matrix with non-zero determinant
