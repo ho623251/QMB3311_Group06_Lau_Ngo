@@ -30,7 +30,7 @@ import doctest
 ##################################################
 
 # Exercise 1: Define matrix_inverse function
-def matrix_inverse(mat_in):
+def matrix_inverse(mat_in): # expected input/output (-2)
     """
     Compute the inverse of a 2x2 matrix.
 
@@ -95,14 +95,14 @@ def matrix_inverse(mat_in):
     mat_out = np.zeros((2, 2))
     for i in range(2):
         for j in range(2):
-            mat_out[i, j] = ((-1)**(i + j) * mat_in[1 - i, 1 - j]) / det
+            mat_out[i, j] = ((-1)**(i + j) * mat_in[1 - i, 1 - j]) / det # as stated in class, this was incorrect and needed an addtional step (-2)
     
     return mat_out
 
 
 # Exercise 2: Compute the sum of the log-likelihood for logistic regression
 
-def logit_like(y, x, beta_0, beta_1):
+def logit_like(y, x, beta_0, beta_1): # expected input/output? (-2)
     """
     Computes the log-likelihood contribution for a single observation (y_i, x_i).
 
@@ -143,9 +143,10 @@ def logit_like(y, x, beta_0, beta_1):
     logit_val = np.exp(beta_0 + beta_1 * x) / (1 + np.exp(beta_0 + beta_1 * x))
     
     # Compute log-likelihood for the observation
+    # Good idea, but what if y is not 0 or 1? (-1)
     return y * np.log(logit_val) + (1 - y) * np.log(1 - logit_val)
 
-def logit_like_sum(y, x, beta_0, beta_1):
+def logit_like_sum(y, x, beta_0, beta_1): # expected input/output? (-2)
     """
     Computes the total log-likelihood sum for a logistic regression model.
 
@@ -198,6 +199,10 @@ def logit_like_sum(y, x, beta_0, beta_1):
     >>> logit_like_sum(y3, x3, beta_0_3, beta_1_3)
     -9.946140604927246
     """
+    
+    # failed to check lengths matching (-1)
+    # failed to check if y are 0,1 (see concern above)
+    
     log_likelihood = beta_0  # Initialize log-likelihood sum with beta_0
     
     for i in range(len(y)):
@@ -255,6 +260,9 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> list:
     # Calculate the logistic function
     def logistic_function(xi: float, beta_0: float, beta_1: float) -> float:
         return 1 / (1 + np.exp(-(beta_0 + beta_1 * xi)))
+    
+    # already calculated in logit assignment
+    
 
     # Initialize the gradients
     grad_beta_0 = 0.0
@@ -272,7 +280,7 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> list:
 
 # Exercise 4: Define CESutility_multi function
 
-def CESutility_multi(x, a, r):
+def CESutility_multi(x, a, r): # expected input/output? (-2)
     """
     Calculates the Constant Elasticity of Substitution utility for multiple goods,
     with a vector of quantities x and a vector of weights a. The parameter r represents
@@ -331,66 +339,6 @@ def CESutility_multi(x, a, r):
 # Test the examples in your docstrings
 ##################################################
 
-# Exercise 1: Test log-likelihood sum for different datasets.
-
-# Example 1: Matrix with non-zero determinant
-mat_in_1 = np.array([[4, 7], [2, 6]])
-print("Example 1: Inverse of mat_in_1:")
-print(matrix_inverse(mat_in_1))  # Expected output: inverse matrix
-print(np.linalg.inv(mat_in_1))   # Compare with numpy's inverse
-
-# Example 2: Singular matrix (determinant is zero)
-mat_in_2 = np.array([[3, 6], [1, 2]])
-print("\nExample 2: Inverse of mat_in_2:")
-print(matrix_inverse(mat_in_2))  # Expected output: Error message, None
-try:
-    print(np.linalg.inv(mat_in_2))  # Compare with numpy's inverse, should raise error
-except np.linalg.LinAlgError as e:
-    print(f"Error using numpy's inverse: {e}")
-
-# Example 3: Another matrix with a non-zero determinant
-mat_in_3 = np.array([[5, 3], [2, 1]])
-print("\nExample 3: Inverse of mat_in_3:")
-print(matrix_inverse(mat_in_3))  # Expected output: inverse matrix
-print(np.linalg.inv(mat_in_3))   # Compare with numpy's inverse
-
-# Exercise 2: Same as Exercise 1 - Identical examples for testing
-
-# Example 1: Small dataset
-y_test_1 = np.array([1, 0, 1, 1])
-x_test_1 = np.array([2.0, 1.5, 3.0, 2.5])
-beta_0_test_1 = 0.5
-beta_1_test_1 = -0.3
-
-print("Example 1: Log-Likelihood Sum =", logit_like_sum(y_test_1, x_test_1, beta_0_test_1, beta_1_test_1))
-
-
-# Example 2: Larger dataset with different coefficients
-y_test_2 = np.array([1, 1, 0, 0, 1, 0, 1, 1, 0, 1])
-x_test_2 = np.array([2.1, 1.2, 2.8, 3.0, 1.5, 2.0, 2.6, 1.8, 3.2, 2.3])
-beta_0_test_2 = -0.2
-beta_1_test_2 = 0.4
-
-print("Example 2: Log-Likelihood Sum =", logit_like_sum(y_test_2, x_test_2, beta_0_test_2, beta_1_test_2))
-
-
-# Example 3: Testing with more extreme beta values
-y_test_3 = np.array([1, 0, 0, 1, 1, 1, 0, 0, 1, 0])
-x_test_3 = np.array([1.5, 2.2, 1.0, 2.8, 3.5, 2.0, 3.1, 2.4, 1.8, 3.3])
-beta_0_test_3 = 1.0
-beta_1_test_3 = -1.2
-
-print("Example 3: Log-Likelihood Sum =", logit_like_sum(y_test_3, x_test_3, beta_0_test_3, beta_1_test_3))
-
-# Exercise 3: Test log-likelihood gradient for different inputs.
-print(logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], 0.0, 0.0))
-print(logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], math.log(3), 0.0))
-print(logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], math.log(7), 0.0))
-
-# Exercise 4: Test CES utility function with various inputs.
-print(CESutility_multi([1.0, 2.0], [1.0, 1.0], 0.5))  # Expected output: 5.82842712474619
-print(CESutility_multi([1.0, -2.0], [0.5, 1.5], 0.5))  # Error: x contains a negative value: -2.0
-print(CESutility_multi([1.0, 2.0], [1.0, 1.0], 1.0))  # Error: r cannot be equal to 1, as the CES utility function is undefined for r = 1.
 
 if __name__ == "__main__":
     doctest.testmod()
