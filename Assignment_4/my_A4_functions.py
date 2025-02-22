@@ -23,12 +23,13 @@
 
 import numpy as np
 import math
+import doctest 
 
 ##################################################
 # Function Definitions
 ##################################################
 
-# Exercise 1(a): Define matrix_inverse function
+# Exercise 1: Define matrix_inverse function
 def matrix_inverse(mat_in):
     """
     Compute the inverse of a 2x2 matrix.
@@ -99,7 +100,7 @@ def matrix_inverse(mat_in):
     return mat_out
 
 
-# Exercise 1(b): Compute the sum of the log-likelihood for logistic regression
+# Exercise 2: Compute the sum of the log-likelihood for logistic regression
 
 def logit_like(y, x, beta_0, beta_1):
     """
@@ -205,7 +206,7 @@ def logit_like_sum(y, x, beta_0, beta_1):
     return log_likelihood
 
 
-# Exercise 1(c): Define logit_like_grad function
+# Exercise 3: Define logit_like_grad function
 
 def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> list:
     """
@@ -269,7 +270,7 @@ def logit_like_grad(y: list, x: list, beta_0: float, beta_1: float) -> list:
     return [grad_beta_0, grad_beta_1]
 
 
-# Exercise 1(d): Define CESutility_multi function
+# Exercise 4: Define CESutility_multi function
 
 def CESutility_multi(x, a, r):
     """
@@ -330,7 +331,7 @@ def CESutility_multi(x, a, r):
 # Test the examples in your docstrings
 ##################################################
 
-# Exercise 1(a): Test log-likelihood sum for different datasets.
+# Exercise 1: Test log-likelihood sum for different datasets.
 
 # Example 1: Matrix with non-zero determinant
 mat_in_1 = np.array([[4, 7], [2, 6]])
@@ -353,7 +354,7 @@ print("\nExample 3: Inverse of mat_in_3:")
 print(matrix_inverse(mat_in_3))  # Expected output: inverse matrix
 print(np.linalg.inv(mat_in_3))   # Compare with numpy's inverse
 
-# Exercise 1(b): Same as Exercise 1(a) - Identical examples for testing
+# Exercise 2: Same as Exercise 1 - Identical examples for testing
 
 # Example 1: Small dataset
 y_test_1 = np.array([1, 0, 1, 1])
@@ -381,16 +382,18 @@ beta_1_test_3 = -1.2
 
 print("Example 3: Log-Likelihood Sum =", logit_like_sum(y_test_3, x_test_3, beta_0_test_3, beta_1_test_3))
 
-# Exercise 1(c): Test log-likelihood gradient for different inputs.
+# Exercise 3: Test log-likelihood gradient for different inputs.
 print(logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], 0.0, 0.0))
 print(logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], math.log(3), 0.0))
 print(logit_like_grad([1, 1, 0, 0], [15.0, 5.0, 15.0, 5.0], math.log(7), 0.0))
 
-# Exercise 1(d): Test CES utility function with various inputs.
+# Exercise 4: Test CES utility function with various inputs.
 print(CESutility_multi([1.0, 2.0], [1.0, 1.0], 0.5))  # Expected output: 5.82842712474619
 print(CESutility_multi([1.0, -2.0], [0.5, 1.5], 0.5))  # Error: x contains a negative value: -2.0
 print(CESutility_multi([1.0, 2.0], [1.0, 1.0], 1.0))  # Error: r cannot be equal to 1, as the CES utility function is undefined for r = 1.
 
+if __name__ == "__main__":
+    doctest.testmod()
 ##################################################
 # End
 ##################################################
