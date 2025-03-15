@@ -140,10 +140,8 @@ def CESdemand_calc(r: float, p_x: float, p_y: float, w: float) -> list:
     """
     denominator = p_x**(r/(r-1)) + p_y**(r/(r-1))
     
-   
     x_star = (p_x**(1/(r-1))) / denominator * w
     y_star = (p_y**(1/(r-1))) / denominator * w
-    
     
     return [x_star, y_star]
 
