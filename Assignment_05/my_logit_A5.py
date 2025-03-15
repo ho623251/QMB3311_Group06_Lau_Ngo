@@ -197,12 +197,14 @@ def logit_dLi_dbk(y_i: float, x_i: float, beta_0: float, beta_1: float, k: int) 
     >>> logit_dLi_dbk(0, 2, math.log(11), math.log(3), 1)
     -1.98
     >>> logit_dLi_dbk(18.5, 2, 1, 0, 3)
-    ValueError: Observations in y must be either zero or one.
+    Error: Observations in y must be either zero or one.
     """
-    if y_i not in [0, 1]:
-        raise ValueError("Observations in y must be either zero or one.")
-
-    return logit_di(x_i, k) * (y_i - logit(x_i, beta_0, beta_1))
+    if y_i in [0, 1] :
+        dLi_dbk = logit_di(x_i, k)*(y_i - logit(x_i, beta_0, beta_1))
+    else:
+            print('Error: Observations in y must be either zero or one.')
+            dLi_dbk =  None
+    return dLi_dbk
 
 
 ##################################################
