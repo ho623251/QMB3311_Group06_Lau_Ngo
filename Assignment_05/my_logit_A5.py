@@ -173,7 +173,7 @@ def logit_di(x_i: float, k: int) -> float:
         raise ValueError("k must be 0 or 1.")
 
 # Assignment 5, question b
-def logit_dLi_dbk(y_i: float, x_i: float, beta_0: float, beta_1: float, k: int) -> float:
+def logit_dLi_dbk(y_i: float, x_i: float, k: int, beta_0: float, beta_1: float) -> float:
     """
     Computes the partial derivative of log-likelihood for logistic regression.
 
